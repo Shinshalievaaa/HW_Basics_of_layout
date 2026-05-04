@@ -24,7 +24,7 @@ class MyServer(BaseHTTPRequestHandler):
         """ Метод для обработки POST-запросов """
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
-        print(body)
+        print(f'Получены данные: {body.decode('utf-8')}')
         self.send_response(200)
         self.end_headers()
 
