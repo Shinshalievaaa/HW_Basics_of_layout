@@ -14,7 +14,7 @@ class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         """ Метод для обработки входящих GET-запросов """
         self.send_response(200) # Отправка кода ответа
-        self.send_header("Content-type", "Content-type=text/html") # Отправка типа данных, который будет передаваться
+        self.send_header("Content-type", "text/html") # Отправка типа данных, который будет передаваться
         self.end_headers() # Завершение формирования заголовков ответа
         with open('src/contacts.html', 'r', encoding='utf-8') as file:
             html_content = file.read()
@@ -24,8 +24,9 @@ class MyServer(BaseHTTPRequestHandler):
         """ Метод для обработки POST-запросов """
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
-        print(body)
-        self.send_response(200)
+        print(f'Получены данные: {body.decode('utf-8')}')
+        self.send_response(303)
+        self.send_header('Location', self.path)
         self.end_headers()
 
 
@@ -41,7 +42,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         # Корректный способ остановить сервер в консоли через сочетание клавиш Ctrl + C
         pass
-
-    # Корректная остановка веб-сервера, чтобы он освободил адрес и порт в сети, которые занимал
-    webServer.server_close()
-    print("Server stopped.")
+    finally:
+        # Корректная остановка веб-сервера, чтобы он освободил адрес и порт в сети, которые занимал
+        webServer.server_close()
+        print("Server stopped.")

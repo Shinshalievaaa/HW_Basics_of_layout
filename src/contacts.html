@@ -185,18 +185,18 @@
                 <div class="container">
                   <div class="row">
                     <div class="col-5 mt-3 text-start">
-                        <form>
+                        <form method="POST">
                           <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Имя</label>
-                              <input type="text" class="form-control">
+                              <label for="user_name" class="form-label">Имя</label>
+                              <input id = "user_name" name="name" type="text" class="form-control">
                           </div>
                           <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Почта</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp">
+                            <label for="exampleInputEmail" class="form-label">Почта</label>
+                            <input id="exampleInputEmail" name="email" type="email" class="form-control" aria-describedby="emailHelp">
                           </div>
                           <div class="mb-3">
-                              <label for="exampleInputEmail1" class="form-label">Сообщение</label>
-                              <textarea class="form-control" rows="3"></textarea>
+                              <label for="user_message" class="form-label">Сообщение</label>
+                              <textarea id="user_message" name="message" class="form-control" rows="3"></textarea>
                           </div>
                           <button type="submit" class="btn btn-primary">Отправить</button>
                         </form>
