@@ -14,7 +14,7 @@ class MyServer(BaseHTTPRequestHandler):
     def do_GET(self):
         """ Метод для обработки входящих GET-запросов """
         self.send_response(200) # Отправка кода ответа
-        self.send_header("Content-type", "Content-type=text/html") # Отправка типа данных, который будет передаваться
+        self.send_header("Content-type", "text/html") # Отправка типа данных, который будет передаваться
         self.end_headers() # Завершение формирования заголовков ответа
         with open('src/contacts.html', 'r', encoding='utf-8') as file:
             html_content = file.read()
