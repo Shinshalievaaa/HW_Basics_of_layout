@@ -11,6 +11,15 @@ class CustomHandler(http.server.SimpleHTTPRequestHandler):
             self.path = 'src/contacts.html'
         return http.server.SimpleHTTPRequestHandler.do_GET(self)
 
+    def do_POST(self):
+        """ Метод для обработки POST-запросов """
+        content_length = int(self.headers['Content-Length'])
+        body = self.rfile.read(content_length)
+        print(f'Получены данные: {body.decode('utf-8')}')
+        self.send_response(303)
+        self.send_header('Location', self.path)
+        self.end_headers()
+
 
 Handler = CustomHandler
 

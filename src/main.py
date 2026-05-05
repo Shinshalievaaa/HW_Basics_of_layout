@@ -25,7 +25,8 @@ class MyServer(BaseHTTPRequestHandler):
         content_length = int(self.headers['Content-Length'])
         body = self.rfile.read(content_length)
         print(f'Получены данные: {body.decode('utf-8')}')
-        self.send_response(200)
+        self.send_response(303)
+        self.send_header('Location', self.path)
         self.end_headers()
 
 
@@ -41,7 +42,7 @@ if __name__ == "__main__":
     except KeyboardInterrupt:
         # Корректный способ остановить сервер в консоли через сочетание клавиш Ctrl + C
         pass
-
-    # Корректная остановка веб-сервера, чтобы он освободил адрес и порт в сети, которые занимал
-    webServer.server_close()
-    print("Server stopped.")
+    finally:
+        # Корректная остановка веб-сервера, чтобы он освободил адрес и порт в сети, которые занимал
+        webServer.server_close()
+        print("Server stopped.")
